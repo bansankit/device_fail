@@ -1,0 +1,26 @@
+
+import tarfile,re,os
+path = "D:/AUGUST_2_2017_INFINERA/AUG_28_2017_INFINERA/again/"
+os.chdir(path)
+
+for filename in os.listdir(path):
+    print(filename)    
+    tar = tarfile.open(path + filename)
+    tar.extractall()
+    tar.close()
+    
+       
+for csvfiles in os.listdir(path):
+    
+    infile = csvfiles
+    outfile = 'Feb_01_2017_00-00-01_events_2.csv'
+    ifh = open (infile, 'r')
+    ofh = open (outfile, 'w+')
+    
+    for line in ifh:
+      	 line = re.sub('\t', '","', line)
+    	 ofh.write('"' + line + '"')
+        ifh.close()
+        ofh.close()    
+
+        ###it is taking lot time to read###
